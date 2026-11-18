@@ -415,7 +415,7 @@ footer .legal{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);
         p.note='University and year: '+val('school')+'. '+(val('note')?('Note: '+val('note')):'');
       } else if(kind==='employer'){
         p.role='Employer or HR team'; p.where=val('company');
-        p.note='Job title: '+val('title')+'. Employees relocated per year: '+val('volume')+'. '+(val('note')?('Note: '+val('note')):'');
+        p.note=[val('title')?('Job title: '+val('title')):'', val('volume')?('Employees relocated per year: '+val('volume')):'', val('note')?('Note: '+val('note')):''].filter(Boolean).join('. ');
       }
       btn.disabled=true; var label=btn.textContent; btn.textContent='Sending...';
       send(p).then(function(){
